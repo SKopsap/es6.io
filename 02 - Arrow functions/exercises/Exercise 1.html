@@ -34,36 +34,29 @@
       console.log(elements);
 
       // Filter for only the elements that contain the word 'Flexbox'
-      const filtered = elements.filter((element) => {
-        return element.textContent.includes("Flexbox");
-      });
-
-      // map down to a list of time strings
-      const timesList = filtered.map((item) => item.getAttribute("data-time"));
-
-      console.log(timesList);
-      // map to an array of seconds
-      const secondsList = timesList.map((item) => {
-        return item.substr(-2);
-      });
-      console.log(secondsList);
+      const filtered = elements
+        .filter((element) => element.textContent.includes("Flexbox"))
+        // map down to a list of time strings
+        .map((item) => item.getAttribute("data-time"))
+        // map to an array of seconds
+        .map((item) => item.substr(-2));
       // reduce to get total
 
       // for loop example
       let total = 0;
-      for (let i = 0; i < secondsList.length; i++) {
-        total = total + Number(secondsList[i]);
+      for (let i = 0; i < filtered.length; i++) {
+        total = total + Number(filtered[i]);
       }
 
       // forEach example
       let temp = 0;
-      secondsList.forEach((_, i) => {
-        temp += Number(secondsList[i]);
+      filtered.forEach((_, i) => {
+        temp += Number(filtered[i]);
       });
 
       // reduce example
       console.log(
-        secondsList.reduce((total, seconds) => total + Number(seconds), 0)
+        filtered.reduce((total, seconds) => total + Number(seconds), 0)
       );
 
       console.log(temp);
